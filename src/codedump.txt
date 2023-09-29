@@ -1,0 +1,203 @@
+
+  /*startTimer = (duration) => {
+    this.setState({ timerRunning: true });
+    let time = duration * 60;
+    let minutes;
+    let seconds;
+    let runningTimer = setInterval(() => {
+      this.setState({
+        timerId: runningTimer
+      });
+
+      minutes = Math.floor(time / 60);
+      seconds = time - minutes * 60;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      this.setState({ currentTime: `${minutes} : ${seconds}` });
+      if (time === 0) {
+        if (this.state.cycle === "Session") {
+          this.setState({
+            cycle: "Break",
+            timerRunning: false
+          });
+          clearInterval(this.state.timerId);
+          this.startTimer(this.state.breakTime);
+        } else {
+          this.setState({
+            cycle: "Session",
+            timerRunning: false
+          });
+          clearInterval(this.state.timerId);
+          this.startTimer(this.state.workTime);
+        }
+      }
+    }, 1000);
+  };*/
+
+  /*startTimer = () => {
+    this.setState({ timerRunning: true });
+    const currentTime = (num) => (num < 10 ? "0" : "") + num;
+    let display = this.setState({currentTime(minutes) + ":" + currentTime(seconds)});
+
+      return new Promise((resolve) => {
+        let runningTimer = setInterval(()=> {
+          this.setState({
+            timerId: runningTimer
+          });
+
+          seconds--;
+          if (seconds < 0) {
+            minutes--;
+            seconds = 59;
+          }
+          if (minutes < 0) {
+            clearInterval(runningTimer);
+            resolve();
+          }
+          currentTime();
+        }, 1000);
+        currentTime();
+      });
+    };*/
+
+
+     setSound = (sound) => {
+    this.setState({
+      sound: sound
+    });
+  };
+
+  incrementWorkTime = () => {
+    this.setState({
+      workTime: this.state.workTime + 1
+    });
+  };
+
+  decreaseWorkTime = () => {
+    this.setState({
+      workTime: this.state.workTime - 1
+    });
+  };
+
+  incrementBreakTime = () => {
+    this.setState({
+      breakTime: this.state.breakTime + 1
+    });
+  };
+
+  decreaseBreakTime = () => {
+    this.setState({
+      breakTime: this.state.breakTime - 1
+    });
+  };
+
+
+  import React from "react";
+
+class BreakControl extends React.Component {
+  handleBreakIncrement = () => {
+    this.props.incrementBreakTime();
+  };
+  handleBreakDecrease = () => {
+    this.props.decreaseBreakTime();
+  };
+
+  render() {
+    return (
+      <div>
+        <p>Break</p>
+        <button onClick={this.handleBreakIncrement}>+</button>
+        <span>{this.props.breakTime}</span>
+        <button onClick={this.handleBreakDecrease}>-</button>
+      </div>
+    );
+  }
+}
+export default BreakControl;
+
+
+import React from "react";
+
+class WorkControl extends React.Component {
+  handleWorkIncrement = () => {
+    this.props.incrementWorkTime();
+    if (this.props.timerRunning === false) {
+      this.props.setCurrentTime(this.props.workTime);
+    }
+  };
+  handleWorkDecrease = () => {
+    this.props.decreaseWorkTime();
+    if (this.props.timerRunning === false) {
+      this.props.setCurrentTime(this.props.workTime);
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <p>Session</p>
+        <button onClick={this.handleWorkIncrement}> + </button>
+        <span>{this.props.workTime}</span>
+        <button onClick={this.handleWorkDecrease}> - </button>
+      </div>
+    );
+  }
+}
+export default WorkControl;
+
+
+
+import React from "react";
+import WorkControl from "./work.js";
+import BreakControl from "./break.js";
+
+class TimerControl extends React.Component {
+  render() {
+    return (
+      <div>
+        <WorkControl
+          workTime={this.props.workTime}
+          incrementWorkTime={this.props.incrementWorkTime}
+          decreaseWorkTime={this.props.decreaseWorkTime}
+        />
+        <BreakControl
+          breakTime={this.props.breakTime}
+          incrementBreakTime={this.props.incrementBreakTime}
+          decreaseBreakTime={this.props.decreaseBreakTime}
+        />
+      </div>
+    );
+  }
+}
+export default TimerControl;
+
+
+
+ <TimerControl
+          workTime={this.state.workTime}
+          breakTime={this.state.breakTime}
+          incrementWorkTime={this.incrementWorkTime}
+          decreaseWorkTime={this.decreaseWorkTime}
+          incrementBreakTime={this.incrementBreakTime}
+          decreaseBreakTime={this.decreaseBreakTime}
+        />
+
+
+
+ constructor() {
+    super();
+    this.state = {
+      timerId: 0,
+      timerRunning: false,
+      currentTime: "25 : 00",
+      setCurrentTime: "",
+      setTimerRunning: "",
+      cycle: "Session",
+      workTime: 25,
+      breakTime: 5,
+      sound: "on"
+    };
+  }
+
+
+      <Beep setSound={this.setSound} sound={this.state.sound} />
