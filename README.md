@@ -8,6 +8,17 @@
 - 💬 Online show case link is <a href="https://tt3wqc.csb.app/" > here<a/>
 
 
+
+# Overview
+- 🚧 under construction 🚧 
+
+
+# Task List
+- [x] Creating working envoriment 
+- [x] Changing better style
+
+
+
 <h3 align="left">WHich language did I use :</h3>
 <p align="left"> 
  
