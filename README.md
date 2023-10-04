@@ -5,7 +5,7 @@
 
 
 - 🌱 İt is a simple pomodoro clock, created on CodeSandbox for freecode front end development libraries certification.
-- 💬 Online show case link is <a href="https://tt3wqc.csb.app/" > here<a/>
+- 💬 Online showcase link is <a href="https://tt3wqc.csb.app/" > here<a/>
 
 
 
